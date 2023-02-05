@@ -1,0 +1,8 @@
+<header class="header-container">
+  <h1>Content</h1>
+  <a routerLink="/brief">Brief</a>
+  <a routerLink="/dashboard">Dashboard</a>
+  <button mat-button [disabled]="editDisabled" class="bulk-edit" (click)="edit()">
+    <span [matTooltip]="'Select employees to edit'">Bulk Edit</span>
+  </button>
+</header>

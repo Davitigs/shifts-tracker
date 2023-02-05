@@ -1,0 +1,17 @@
+.employees-table, .shifts-table {
+  min-height: fit-content;
+  overflow-y: auto;
+
+  .mat-table {
+    max-height: calc(27vh);
+  }
+}
+.employees-table {
+  margin-bottom: 20px;
+}
+
+
+.mat-card {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
+  padding: 0;
+}

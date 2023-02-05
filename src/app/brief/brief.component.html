@@ -1,0 +1,103 @@
+<h2>Employees</h2>
+<section class="brief">
+  <ng-container *ngIf="!(isLoading$ | async); else loader">
+    <mat-card class="employees-table">
+      <mat-table
+        [dataSource]="employeesTable"
+        [trackBy]="dataTrackByFn"
+      >
+        <!-- id Column -->
+        <ng-container matColumnDef="id" [sticky]="true">
+          <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span>{{element.id}}</span>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span>{{element.name}}</span>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span>{{element.email}}</span>
+          </mat-cell>
+        </ng-container>
+
+        <!-- hourlyRate Column -->
+        <ng-container matColumnDef="hourlyRate">
+          <mat-header-cell *matHeaderCellDef>Hourly Rate</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span>{{element.hourlyRate | currency}}</span>
+          </mat-cell>
+        </ng-container>
+
+        <!-- hourlyRateOvertime Column -->
+        <ng-container matColumnDef="hourlyRateOvertime">
+          <mat-header-cell *matHeaderCellDef>Hourly Rate Overtime</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span>{{element.hourlyRateOvertime | currency}}</span>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+    </mat-card>
+
+    <h2>Shifts</h2>
+
+    <mat-card class="shifts-table">
+      <mat-table
+        [dataSource]="shiftsTable"
+        [trackBy]="shiftsDataTrackByFn"
+      >
+        <!-- id Column -->
+        <ng-container matColumnDef="id" [sticky]="true">
+          <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span>{{element.id}}</span>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Employee Id Column -->
+        <ng-container matColumnDef="employeeId">
+          <mat-header-cell *matHeaderCellDef>Employee Id</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span>{{element.employeeId}}</span>
+          </mat-cell>
+        </ng-container>
+
+        <!-- clock in Column -->
+        <ng-container matColumnDef="clockIn">
+          <mat-header-cell *matHeaderCellDef>Clock In</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span>{{element.clockIn | date: 'dd/MM/yyyy, HH:mm'}}</span>
+          </mat-cell>
+        </ng-container>
+
+        <!-- clock out Column -->
+        <ng-container matColumnDef="clockOut">
+          <mat-header-cell *matHeaderCellDef>Clock Out</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span>{{element.clockOut | date: 'dd/MM/yyyy, HH:mm'}}</span>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="shiftsDisplayedColumns; sticky: true"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: shiftsDisplayedColumns"></mat-row>
+      </mat-table>
+    </mat-card>
+  </ng-container>
+</section>
+<ng-template #loader>
+  <div class="loader-wrapper">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

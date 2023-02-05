@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+@import "assets/scss/table";
+@import "assets/scss/checkbox";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; padding: 20px }
+
+.loader-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-dialog-container {
+  padding: 0 !important;
+}
+
+.success-text {
+  color: #9ccc65;
+}

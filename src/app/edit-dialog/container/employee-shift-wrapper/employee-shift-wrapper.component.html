@@ -1,0 +1,10 @@
+<h2>{{employee.name}}</h2>
+<app-employee [employee]="employee" (emitEditedEmployee)="getEditedEmployee($event)"></app-employee>
+<h3>Shifts</h3>
+<app-shift
+  [shifts]="shifts"
+  [shiftsDates] = "employee.shifts"
+  (emitEditedShifts)="getEditedShifts($event)">
+
+</app-shift>
+<div class="divider"></div>

@@ -1,0 +1,84 @@
+<mat-card class="employees-table" *ngIf="!(isLoading$ | async); else loader">
+  <mat-table
+    [dataSource]="dashboardTable"
+  >
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()"
+                      color="primary"
+                      >
+        </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="chbox">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)"
+                      color="primary"
+                      >
+        </mat-checkbox>
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef>
+        <strong>Total</strong>
+      </mat-footer-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span>{{element.name}}</span>
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef> <span>{{employeesCount$ | async}} Employee</span> </mat-footer-cell>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span>{{element.email}}</span>
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+    </ng-container>
+
+    <!-- Total Time Column -->
+    <ng-container matColumnDef="totalTime">
+      <mat-header-cell *matHeaderCellDef>Total Time (h)</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span>{{element.totalTime | number: '1.1-2'}}</span>
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef><span> {{totalTime | number: '1.1-2'}}</span> </mat-footer-cell>
+    </ng-container>
+
+    <!-- Total Regular Amount Column -->
+    <ng-container matColumnDef="totalRegularAmount">
+      <mat-header-cell *matHeaderCellDef>Total Regular Amount</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span>{{element.totalRegularAmount | currency}}</span>
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef> <span> {{totalRegularAmount | currency}}</span> </mat-footer-cell>
+    </ng-container>
+
+    <!-- Total Overtime Amount Column -->
+    <ng-container matColumnDef="totalOvertimeAmount">
+      <mat-header-cell *matHeaderCellDef>Total Overtime Amount</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span>{{element.totalOvertimeAmount | currency}}</span>
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef><span> {{totalOvertimeAmount | currency}} </span></mat-footer-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    <mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></mat-footer-row>
+  </mat-table>
+</mat-card>
+
+<ng-template #loader>
+  <div class="loader-wrapper">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

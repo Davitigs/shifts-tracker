@@ -1,0 +1,25 @@
+.header-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  a {
+    width: fit-content;
+    display: inline-block;
+    font-size: 18px;
+    margin-bottom: 10px;
+    &:last-child {
+      margin-bottom: 6px;
+    }
+  }
+  .bulk-edit {
+    cursor: pointer;
+    text-decoration: underline;
+    width: fit-content;
+    padding: 0;
+    font-size: 18px;
+
+    &:hover {
+      background: unset;
+    }
+  }
+}

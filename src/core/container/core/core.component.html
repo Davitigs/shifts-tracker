@@ -1,0 +1,4 @@
+<app-header [editDisabled]="!(selectedServices$ | async)?.length" (emitEdit)="openPopup()"></app-header>
+<app-main-layout>
+  <router-outlet></router-outlet>
+</app-main-layout>
